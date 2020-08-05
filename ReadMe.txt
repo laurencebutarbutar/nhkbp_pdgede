@@ -59,10 +59,18 @@ If you want to complete the order manually, update manually from phpmyadmin tabl
 	1 = Follow Up
 	2 = Completed
 
-## CONFIGURATION SENT EMAIL ## :
+## CONFIGURATION SENT EMAIL FORGOT PASSWORD/USERNAME ## :
 1. If use gmail :> Less secure app access for gmail turn on,
 2. If use ymail :> Less secure app access for gmail turn on with :
 	a. Go to link Manage app passwords in your yahoo Account Security menu from your account,
 	b. Generate new password for app, choose other app, put phpmailer,
 	c. After you get the passwords, put the password into passwords yahoo setting smtp.
-3. edit setting for hosting, username, passwords, and smtp in file services/home/sentEmail.php
+3. edit setting for forgot password/username hosting, username, passwords, and smtp in file services/home/sentEmail.php
+
+## CONFIGURATION SENT EMAIL ORDER ## :
+1. If use gmail :> Less secure app access for gmail turn on,
+2. If use ymail :> Less secure app access for gmail turn on with :
+	a. Go to link Manage app passwords in your yahoo Account Security menu from your account,
+	b. Generate new password for app, choose other app, put phpmailer,
+	c. After you get the passwords, put the password into passwords yahoo setting smtp.
+3. edit setting for order hosting, username, passwords, and smtp in file services/users/sentEmailOrder.php

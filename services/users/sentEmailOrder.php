@@ -33,10 +33,10 @@ $emailUser = $_SESSION['email'];
 $fullName = $_SESSION['fullName'];
 $address = $_SESSION['address'];
 $phone = $_SESSION['phone'];
-$emailOrder = "richard.andriyanto.tamba@gmail.com";
-$fullNameOrder = "Richard Sahala Tamba";
-$emailOrder2 = "sihombingyeftah@gmail.com";
-$fullNameOrder2 = "Yeftah Christanto Sihombing";
+$emailOrder = "yyy@gmail.com";
+$fullNameOrder = "yyy";
+// $emailOrder2 = "xxxx@gmail.com";
+// $fullNameOrder2 = "XX XX";
 
 $lastIdOrder = $_SESSION['lastIdOrder'];
 $file_name = "../../assets/pdf/".$lastIdOrder.".pdf";
@@ -45,21 +45,39 @@ $file_name = "../../assets/pdf/".$lastIdOrder.".pdf";
 //========================================== Setting Mail ====================================
 $mail = new PHPMailer; 
 $mail->IsSMTP();
-$mail->SMTPSecure = 'ssl'; 
-$mail->Host = "nhkbp-pdgede.com"; //host masing2 provider email
-$mail->SMTPDebug = 2;
-$mail->Port = 465;
+
+//host masing2 provider email -> JAGOANHOSTING
+// $mail->SMTPSecure = 'ssl'; 
+// $mail->Host = "nhkbp-pdgede.com"; 
+// $mail->SMTPDebug = 2;
+// $mail->Port = 465;
+// $mail->SMTPAuth = true;
+// $mail->Username = "admin@nhkbp-pdgede.com"; //user email
+// $mail->Password = "@dminP0nd0kG3d3"; //password email 
+
+//host masing2 provider email -> Yahoo
+$mail->SMTPSecure = 'tls'; 
+$mail->Host = "smtp.mail.yahoo.com"; 
+$mail->SMTPDebug = 3;
+$mail->Port = 587;
 $mail->SMTPAuth = true;
-$mail->Username = "admin@nhkbp-pdgede.com"; //user email
-$mail->Password = "@dminP0nd0kG3d3"; //password email 
-$mail->SetFrom("admin@nhkbp-pdgede.com","Admin NHKBP Pondok Gede"); //set email pengirim
-$mail->Subject = $subjectEmail; //subyek email
-$mail->AddAddress($emailUser,$fullName);  //tujuan email
-$mail->AddAddress($emailOrder,$fullNameOrder);  //tujuan email
-$mail->AddAddress($emailOrder2,$fullNameOrder2);  //tujuan email
-// $mail->AddCC($emailOrder,$fullNameOrder);  //tujuan cc email
-$mail->addAttachment($file_name); //attach file
-$mail->MsgHTML("<h3>Dear ".$fullName.",</h3>
+$mail->Username = "yyyy@yahoo.com"; //user email
+$mail->Password = "yyy"; //password email 
+
+//host masing2 provider email -> Gmail
+//if use gmail dont forget to set Less secure app access for gmail turn on in gmail setting
+//turn off Signing in to Google with phone to sign in
+// $mail->SMTPSecure = 'tls'; 
+// $mail->Host = "smtp.gmail.com"; 
+// $mail->SMTPDebug = 3;
+// $mail->Port = 587;
+// $mail->SMTPAuth = true;
+// $mail->Username = "xxxx@gmail.com"; //user email
+// $mail->Password = "xxxx"; //password email 
+
+$emailName = $mail->Username;
+$emailNameAlias = "Admin NHKBP Pondok Gede";
+$msgHtml = "<h3>Dear ".$fullName.",</h3>
 <p>Thank you for ordering food from us.
 <br>Your food receipt is attached in this email.
 <br>We will contact you by phone to confirm your order.
@@ -67,7 +85,16 @@ $mail->MsgHTML("<h3>Dear ".$fullName.",</h3>
 <br>Please don't reply this email, this is automated email.</p>
 <h4>Best Regards,</h4>
 <h4>Panitia Parheheon 
-<br>NHKBP Pondok Gede 2018</h4>");
+<br>NHKBP Pondok Gede 2018</h4>";
+
+$mail->SetFrom($emailName,$emailNameAlias); //set email pengirim
+$mail->Subject = $subjectEmail; //subyek email
+$mail->AddAddress($emailUser,$fullName);  //tujuan email
+$mail->AddAddress($emailOrder,$fullNameOrder);  //tujuan email
+$mail->AddAddress($emailOrder2,$fullNameOrder2);  //tujuan email
+// $mail->AddCC($emailOrder,$fullNameOrder);  //tujuan cc email
+$mail->addAttachment($file_name); //attach file
+$mail->MsgHTML($msgHtml);
 
 if($mail->Send()){
     $_SESSION['successRegisActivities'] = 1;
