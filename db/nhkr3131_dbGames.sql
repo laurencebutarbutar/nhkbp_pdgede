@@ -187,7 +187,7 @@ CREATE TABLE `t_cms` (
 --
 
 INSERT INTO `t_cms` (`id`, `username`, `password`) VALUES
-(2, 'jaka', 'jaka');
+(2, 'laurence', '123456');
 
 -- --------------------------------------------------------
 

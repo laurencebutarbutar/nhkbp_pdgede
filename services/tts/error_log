@@ -1,0 +1,2 @@
+[29-Aug-2018 10:24:44 Asia/Jakarta] PHP Warning:  array_rand() expects parameter 1 to be array, null given in /home/nhkr3131/public_html/services/tts/checkPlay.php on line 110
+[29-Aug-2018 10:24:44 Asia/Jakarta] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/nhkr3131/public_html/services/tts/checkPlay.php on line 144
