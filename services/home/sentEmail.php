@@ -43,17 +43,43 @@ $redirectEmail = explode(" ", $subjectEmail);
 //========================================== Setting Mail ====================================
 $mail = new PHPMailer; 
 $mail->IsSMTP();
-$mail->SMTPSecure = 'ssl'; 
-$mail->Host = "nhkbp-pdgede.com"; //host masing2 provider email
-$mail->SMTPDebug = 2;
-$mail->Port = 465;
+//host masing2 provider email -> JAGOANHOSTING
+// $mail->SMTPSecure = 'ssl'; 
+// $mail->Host = "nhkbp-pdgede.com"; 
+// $mail->SMTPDebug = 2;
+// $mail->Port = 465;
+// $mail->SMTPAuth = true;
+// $mail->Username = "admin@nhkbp-pdgede.com"; //user email
+// $mail->Password = "@dminP0nd0kG3d3"; //password email 
+
+//host masing2 provider email -> Yahoo
+$mail->SMTPSecure = 'tls'; 
+$mail->Host = "smtp.mail.yahoo.com"; 
+$mail->SMTPDebug = 3;
+$mail->Port = 587;
 $mail->SMTPAuth = true;
-$mail->Username = "admin@nhkbp-pdgede.com"; //user email
-$mail->Password = "@dminP0nd0kG3d3"; //password email 
-$mail->SetFrom("admin@nhkbp-pdgede.com","Admin NHKBP Pondok Gede"); //set email pengirim
+$mail->Username = "xxxx@yahoo.com"; //user email
+$mail->Password = "xxxx"; //password email 
+
+//host masing2 provider email -> Gmail
+//if use gmail dont forget to set Less secure app access for gmail turn on in gmail setting
+//turn off Signing in to Google with phone to sign in
+// $mail->SMTPSecure = 'tls'; 
+// $mail->Host = "smtp.gmail.com"; 
+// $mail->SMTPDebug = 3;
+// $mail->Port = 587;
+// $mail->SMTPAuth = true;
+// $mail->Username = "xxxx@gmail.com"; //user email
+// $mail->Password = "xxxx"; //password email 
+
+$emailName = $mail->Username;
+$emailNameAlias = "Admin NHKBP Pondok Gede";
+$msgHtml = "Dear ".$fullName.", <br><br>We got message if you forgot your ".$nameAttribute.". <br>So, we emailing you to give your ".$nameAttribute.". <br>Your ".$nameAttribute." is ".$valueAttribute.". <br><br>Regards, <br>Admin";
+
+$mail->SetFrom($emailName,$emailNameAlias); //set email pengirim
 $mail->Subject = $subjectEmail; //subyek email
 $mail->AddAddress($emailUser,$fullName);  //tujuan email
-$mail->MsgHTML("Dear ".$fullName.", <br><br>We got message if you forgot your ".$nameAttribute.". <br>So, we emailing you to give your ".$nameAttribute.". <br>Your ".$nameAttribute." is ".$valueAttribute.". <br><br>Regards, <br>Admin");
+$mail->MsgHTML($msgHtml);
 if($mail->Send()){
     $_SESSION['nameAttribute'] = null;
     $_SESSION['valueAttribute'] = null;
@@ -66,8 +92,7 @@ if($mail->Send()){
     }else if($redirectEmail[1] == "Username"){
         header("Location: ../../view/home/forgotUsername.php");
     }
-} 
-else{    
+}else{    
     $_SESSION['statusSentEmail'] = "Connection Problem, Please Try Again";
     if($redirectEmail[1] == "Password"){
         header("Location: ../../view/home/forgotPassword.php");
@@ -76,4 +101,4 @@ else{
     }
 }
 
-?>	
+?>

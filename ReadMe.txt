@@ -51,3 +51,18 @@ Description : this is table for save the question in each apps
 2. If user have 6 or more wrong answer, she/he will game over or can't continue the game.
 3. User will finish the game if she/he completed all level, without have 6 or more wrong answer.
 4. If you want to reset the user u must update table users_score, column created_at, just minus 12 hours from the last time created_at
+
+## ORDER STATUS EMAIL ##
+
+If you want to complete the order manually, update manually from phpmyadmin table t_order column status to :
+	0 = Pending Order
+	1 = Follow Up
+	2 = Completed
+
+## CONFIGURATION SENT EMAIL ## :
+1. If use gmail :> Less secure app access for gmail turn on,
+2. If use ymail :> Less secure app access for gmail turn on with :
+	a. Go to link Manage app passwords in your yahoo Account Security menu from your account,
+	b. Generate new password for app, choose other app, put phpmailer,
+	c. After you get the passwords, put the password into passwords yahoo setting smtp.
+3. edit setting for hosting, username, passwords, and smtp in file services/home/sentEmail.php
